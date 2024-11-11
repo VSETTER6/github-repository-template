@@ -1,15 +1,15 @@
-name: Deploy Action to Development
+name: Deploy Action to Production
 on:
   pull_request:
     branches:
-      - development
+      - production
 
 jobs:
   run-on-dev-env:
-    name: Run on DEVELOPMENT Environment
+    name: Run on PRODUCTION Environment
     runs-on: ubuntu-latest
     environment:
-      name: DEVELOPMENT
+      name: PRODUCTION
 
     steps:
       - name: Checkout code
@@ -21,7 +21,7 @@ jobs:
           dotnet-version: "8.x" # Set this to your .NET version
 
       - name: Print Start Message
-        run: echo "Starting pre-merge checks for DEVELOPMENT environment..."
+        run: echo "Starting pre-merge checks for PRODUCTION environment..."
 
       - name: Simulate Building Solution
         run: |
@@ -33,7 +33,7 @@ jobs:
 
       - name: Simulate Running Tests
         run: |
-          echo "Running tests in DEVELOPMENT environment..."
+          echo "Running tests in PRODUCTION environment..."
           # Uncomment the following line for real .NET tests:
           # dotnet test
           sleep 2
@@ -41,9 +41,9 @@ jobs:
 
       - name: Deployment Readiness Check
         run: |
-          echo "Performing deployment readiness check for DEVELOPMENT environment..."
+          echo "Performing deployment readiness check for PRODUCTION environment..."
           sleep 2
-          echo "DEVELOPMENT environment readiness check completed successfully!"
+          echo "PRODUCTION environment readiness check completed successfully!"
 
       - name: Final Message
-        run: echo "All checks passed. Ready to merge into development!"
+        run: echo "All checks passed. Ready to merge into production!"
